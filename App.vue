@@ -1,12 +1,14 @@
 <template>
   <ScrollView>
     <view class="bar"></view>
-    <view class="container">
+    <view class="canvas">
       <image
-        :style="{width: 300, height: 300}"
+        resizeMode="cover"
+        :style="{height: 100}"
         :source="{uri: 'https://www-konga-com-res.cloudinary.com/w_auto,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/S/O/145816_1545587421.jpg'}"
       ></image>
-      
+    </view>
+    <view class="container">
       <!-- form - input contact -->
       <view class="form-wrapper">
         <text>Add New Member</text>
@@ -237,5 +239,9 @@ export default {
   padding: 8;
   text-align: center;
   min-width: 120;
+}
+.canvas {
+  width: 100%;
+  height: 100;
 }
 </style>
