@@ -9,11 +9,12 @@
       ></image>
     </view>
     <view class="bar"></view>
+
     <view class="container">
       <!-- form - input contact -->
       <view class="form-wrapper">
         <touchable-opacity :on-press="addNewMember" class="full-width">
-          <text class="btn-primary sm-radius white-text"> Add Member </text>
+          <text class="btn-primary sm-radius white-text">+ Add Member </text>
         </touchable-opacity>
       </view>
 
@@ -66,6 +67,9 @@
 
 <script>
 import axios from 'axios'
+import { Icon } from "react-native-elements"
+// import { MaterialCommunityIcons } from '@expo/vector-icons'
+
 import loader from '../../assets/loader.gif'
 
 const AUTH_TOKEN = `BearereyJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjoyfQ.Qtxy5mDBDF4y_s8TlWPTHAiEKPvI1crqhZM1zjfg7Ys`;
@@ -85,7 +89,8 @@ export default {
       memberName: null,
       contactList: [],
       loading: true,
-      loader: loader
+      loader: loader,
+      icon: Icon
     };
   },
   methods: {
@@ -242,7 +247,7 @@ export default {
   border-color: #a4c2b5;
   color: #a4c2b5;
   border-width: 1;
-  border-radius: 2;
+  border-radius: 3;
   padding: 8;
   text-align: center;
   min-width: 120;

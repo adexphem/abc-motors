@@ -4,15 +4,30 @@
 
 <script>
 import { StackNavigator } from "vue-native-router";
-import { Icon } from "react-native-elements";
 
 import MainScreen from "./src/screens/Main";
 import NewMemberScreen from "./src/screens/NewMember";
 
 const AppNavigation = StackNavigator(
   {
-    Home: MainScreen,
-    AddMember: NewMemberScreen
+    Home: {
+      screen: MainScreen,
+      navigationOptions: {
+        title: "Member List",
+        headerStyle: {
+          backgroundColor: "#ffffff"
+        }
+      }
+    },
+    AddMember: {
+      screen: NewMemberScreen,
+      navigationOptions: {
+        title: "New Member",
+        headerStyle: {
+          backgroundColor: "#ffffff"
+        }
+      }
+    }
   },
   {
     initialRouteName: "Home"
