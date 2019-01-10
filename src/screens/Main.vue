@@ -1,67 +1,69 @@
 <template>
   <ScrollView>
-    <view class="bar"></view>
-    <view class="canvas">
-      <image
-        resizeMode="cover"
-        :style="{height: 100}"
-        :source="{uri: 'https://www-konga-com-res.cloudinary.com/w_auto,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/S/O/145816_1545587421.jpg'}"
-      ></image>
-    </view>
-    <view class="bar"></view>
-
-    <view class="container">
-      <!-- form - input contact -->
-      <view class="form-wrapper">
-        <touchable-opacity :on-press="addNewMember" class="full-width">
-          <text class="btn-primary sm-radius white-text">+ Add Member </text>
-        </touchable-opacity>
+    <ImageBackground v-bind:source="bgImage" class="coverage">
+      <view class="bar"></view>
+      <view class="canvas">
+        <image
+          resizeMode="cover"
+          :style="{height: 100}"
+          :source="{uri: 'https://www-konga-com-res.cloudinary.com/w_auto,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/S/O/145816_1545587421.jpg'}"
+        ></image>
       </view>
+      <view class="bar"></view>
 
-      <!-- display contacts -->
-      <view class="wrapper">
-        <view class="flex header-tilt">
-          <text :style="{color: '#33b27b', fontWeight: '600'}">MEMBER LIST</text>
+      <view class="container">
+        <!-- form - input contact -->
+        <view class="form-wrapper">
+          <touchable-opacity :on-press="addNewMember" class="full-width">
+            <text class="btn-primary sm-radius white-text">+ Add Member </text>
+          </touchable-opacity>
         </view>
 
-        <view class="contact-wrapper" >
-          <view v-if="loading" class="loader-wrapper">
-            <image :source="loader" class="loader" />
+        <!-- display contacts -->
+        <view class="wrapper">
+          <view class="flex header-tilt">
+            <text :style="{color: '#33b27b', fontWeight: '600'}">MEMBER LIST</text>
           </view>
 
-          <view v-else v-for="(contact, key) in contactList" :key="key">
-            <view class="contact-list card">
-              <!-- //top -->
-              <view class="flex">
-                <view>
-                  <image
-                  class="img-wrapper"
-                  :source="{uri: 'https://www-konga-com-res.cloudinary.com/w_auto,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/S/O/145816_1545587421.jpg'}"
-                ></image>
-                </view>
-                <view class="top-wrap">
-                  <text class="sub" :style="{color: 'rgba(33, 33, 33, 0.9)', fontWeight: '600', fontSize: 15}">{{ contact.email }}</text>
-                  <view class="flex">
-                    <text class="title" :style="{fontWeight: '300'}">Medium: </text>
-                    <text class="title" :style="{color: '#33b27b', fontWeight: '300'}">{{ contact.invitation_medium }}</text>
+          <view class="contact-wrapper" >
+            <view v-if="loading" class="loader-wrapper">
+              <image :source="loader" class="loader" />
+            </view>
+
+            <view v-else v-for="(contact, key) in contactList" :key="key">
+              <view class="contact-list card">
+                <!-- //top -->
+                <view class="flex">
+                  <view>
+                    <image
+                    class="img-wrapper"
+                    :source="{uri: 'https://www-konga-com-res.cloudinary.com/w_auto,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/S/O/145816_1545587421.jpg'}"
+                  ></image>
+                  </view>
+                  <view class="top-wrap">
+                    <text class="sub" :style="{color: 'rgba(33, 33, 33, 0.9)', fontWeight: '600', fontSize: 15}">{{ contact.email }}</text>
+                    <view class="flex">
+                      <text class="title" :style="{fontWeight: '300'}">Medium: </text>
+                      <text class="title" :style="{color: '#33b27b', fontWeight: '300'}">{{ contact.invitation_medium }}</text>
+                    </view>
                   </view>
                 </view>
-              </view>
 
-              <!-- //details -->
-              <view>
-                <text class="title grey-text">{{ contact.address }}</text>
-              </view>
+                <!-- //details -->
+                <view>
+                  <text class="title grey-text">{{ contact.address }}</text>
+                </view>
 
-              <!-- //footer -->
-              <view class="flex" :style="{ marginTop: 10, justifyContent: 'flex-end'}">
-                <text class="cta-edit">Edit</text>
+                <!-- //footer -->
+                <view class="flex" :style="{ marginTop: 10, justifyContent: 'flex-end'}">
+                  <text class="cta-edit">Edit</text>
+                </view>
               </view>
             </view>
           </view>
         </view>
       </view>
-    </view>
+    </ImageBackground>
   </ScrollView>
 </template>
 
@@ -71,6 +73,7 @@ import { Icon } from "react-native-elements"
 // import { MaterialCommunityIcons } from '@expo/vector-icons'
 
 import loader from '../../assets/loader.gif'
+import bgImg from "../../assets/bgImg.jpeg"
 
 const AUTH_TOKEN = `BearereyJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjoyfQ.Qtxy5mDBDF4y_s8TlWPTHAiEKPvI1crqhZM1zjfg7Ys`;
 axios.defaults.baseURL = 'https://qontactsky.herokuapp.com/';
@@ -90,7 +93,8 @@ export default {
       contactList: [],
       loading: true,
       loader: loader,
-      icon: Icon
+      icon: Icon,
+      bgImage: bgImg
     };
   },
   methods: {
@@ -125,13 +129,11 @@ export default {
 };
 </script>
  
-<style>
+<style scoped>
 .container {
-  background-color: #f5f5f5;
+  flex: 1;
   align-items: center;
   justify-content: center;
-  flex: 1;
-  padding: 10;
 }
 .text-color-primary {
   color: red;
@@ -160,6 +162,7 @@ export default {
 .form-wrapper {
   margin-top: 10;
   margin-bottom: 10;
+  flex: 1;
 }
 .wrapper {
   width: 100%;

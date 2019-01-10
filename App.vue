@@ -37,3 +37,15 @@ export default {
   components: { AppNavigation }
 };
 </script>
+
+<style>
+.flex {
+  display: flex;
+}
+
+.coverage {
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+}
+</style>
